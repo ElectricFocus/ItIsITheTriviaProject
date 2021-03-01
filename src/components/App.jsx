@@ -16,6 +16,10 @@ function Question(props) {
   );
   
 }
+{numbers.map((number)=>(
+
+)}
+
 
 function App() {
   let currentquestion = 0;
