@@ -16,18 +16,7 @@ function Question(props) {
   );
   
 }
-function answer1(){
-  
-}
-function answer2(){
 
-}
-function answer3(){
-
-}
-function answer4(){
-
-}
 function App() {
   let currentquestion = 0;
   return (
