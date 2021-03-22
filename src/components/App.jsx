@@ -37,26 +37,40 @@ function color() {}
 
 function App() {
   let [isAnswered, setIsAnswered] = useState(false);
-  let currentquestion = 0;
-  
-  let correctIndex = data[currentquestion].question.correct_choice_index;
+  let [currentQuestion, setCurrentQuestion] = useState(0);
+
+  let correctIndex = data[currentQuestion].question.correct_choice_index;
   return (
     <div className="app">
-      <button onClick={() => setIsAnswered(true)}> 
-        {data[currentquestion].question.choices[correctIndex]} 
+      <button onClick={() => setIsAnswered(true)}>
+        {isAnswered
+          ? data[currentQuestion].question.choices[correctIndex]
+          : "unfold answer"}
       </button>
       <Question
-        text={data[currentquestion].question.text}
-        choices={data[currentquestion].question.choices}
+        text={data[currentQuestion].question.text}
+        choices={data[currentQuestion].question.choices}
       />
-      <NextQuestion />
+      <NextQuestion
+        nextQuestion={setCurrentQuestion}
+        jazbel={currentQuestion}
+        turtle={setIsAnswered}
+      />
     </div>
   );
 }
-function NextQuestion() {
+function NextQuestion(props) {
   return (
     <div className="app">
-      <button> press me to move on </button>
+      <button
+        onClick={() => {
+          props.nextQuestion(props.jazbel + 1);
+          props.turtle(false);
+        }}
+      >
+        {" "}
+        press me to move on{" "}
+      </button>
     </div>
   );
 }

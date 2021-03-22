@@ -14,5 +14,13 @@
       "text": "What was the original name of Code Nation when it was founded?",
       "user_id": "ZbCvDadaM0SD9YjAXrHMEDLVGoj2"
     }
+  },
+  {
+    "question": {
+      "choices": ["Waldo", "Luigi", "Goldilocks", "Emily"],
+      "correct_choice_index": 3,
+      "text": "Who is our CodeNation teacher?",
+      "user_id": "ZbCvDadaM0SD9YjAXrHMEDLVGoj2"
+    }
   }
 ]
