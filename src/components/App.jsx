@@ -7,33 +7,12 @@ function Question(props) {
   return (
     <div>
       <p id="title"> {props.text} </p>
-      <button>
-        <Answer text={props.choices[0]} />{" "}
-      </button>
-      <button>
-        <Answer text={props.choices[1]} />{" "}
-      </button>
-      <button>
-        {" "}
-        <Answer text={props.choices[2]} />{" "}
-      </button>
-      <button>
-        {" "}
-        <Answer text={props.choices[3]} />{" "}
-      </button>
+      {props.choices.map((choice) => (
+        <Answer text={choice} gorilla={props.zebra} />
+      ))}
     </div>
   );
 }
-/*
-{numbers.map((number)=>(
-    <p>{number}</p>
-))}
-{props.choices.map((choice)=> (
-  <Answer text ={choice}/>
-))}
-*/
-
-function color() {}
 
 function App() {
   let [isAnswered, setIsAnswered] = useState(false);
@@ -42,14 +21,15 @@ function App() {
   let correctIndex = data[currentQuestion].question.correct_choice_index;
   return (
     <div className="app">
-      <button onClick={() => setIsAnswered(true)}>
-        {isAnswered
+      <p>
+        {isAnswered === data[currentQuestion].question.choices[correctIndex]
           ? data[currentQuestion].question.choices[correctIndex]
-          : "unfold answer"}
-      </button>
+          : "choose an answer"}
+      </p>
       <Question
         text={data[currentQuestion].question.text}
         choices={data[currentQuestion].question.choices}
+        zebra={setIsAnswered}
       />
       <NextQuestion
         nextQuestion={setCurrentQuestion}
@@ -77,7 +57,14 @@ function NextQuestion(props) {
 function Answer(props) {
   return (
     <div>
-      <p> {props.text}</p>
+      <button
+        onClick={() => {
+          props.gorilla(props.text);
+        }}
+      >
+        {" "}
+        {props.text}
+      </button>
     </div>
   );
 }
